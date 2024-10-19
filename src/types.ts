@@ -97,6 +97,7 @@ export interface Adventure {
   id: string; // uuid
   title: string;
   description: string;
+  image_url: string;
   rooms: Room[];
   items: Item[];
   entities: Entity[];
