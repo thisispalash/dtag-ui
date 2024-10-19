@@ -9,10 +9,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: 'var(--background)',
         foreground: 'var(--foreground)',
-        primary: '#0F766E', // green
+        background: '#222222',
+        primary: '#297F32', // green
         secondary: '#E2E8F0', // white
+      },
+      fontFamily: {
+        'heading': 'var(--font-bulzing)',
+        'heading-italic': 'var(--font-bulzing-italic)',
+        'terminal': 'var(--font-vt323)',
+        'text': 'var(--font-white-rabbit)',
       },
     },
   },

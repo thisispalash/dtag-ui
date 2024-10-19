@@ -18,9 +18,9 @@ export default function CTA({
   return (
     <button 
       className={clsx(
-        'rounded-lg px-4 py-2 border',
-        'text-base font-medium capitalize',
-        variant === 'primary' && 'border-primary text-primary hover:bg-primary hover:text-background',
+        'rounded-lg px-3 py-1 border',
+        'text-lg font-terminal font-medium capitalize',
+        variant === 'primary' && 'border-primary bg-primary text-background hover:bg-background hover:text-primary',
         variant === 'secondary' && 'border-secondary text-secondary hover:bg-secondary hover:text-background'
       )}
       onClick={onClick}
