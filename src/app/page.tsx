@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <div className={clsx(
       'flex flex-col gap-4',
-      'bottom-0 right-0 p-8 items-end'
+      'p-8 h-full justify-end'
     )}>
 
       <div className={clsx(

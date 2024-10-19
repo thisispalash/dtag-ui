@@ -17,14 +17,7 @@ export default function ClientWrapper({ children }: { children: React.ReactNode 
         environmentId: process.env.NEXT_PUBLIC_DYNAMIC_ENVIRONMENT_ID || '',
         walletConnectors: [ EthereumWalletConnectors ],
         handlers: {
-          onConnectWallet: (wallet) => {
-            console.log('Connected wallet', wallet);
-          },
-          onDisconnectWallet: () => {
-            console.log('Disconnected wallet');
-            setLoggedIn(false);
-          },
-          handleConnectedWallet: (args) => {
+          handleConnectedWallet: async (args) => {
             console.log('Connected wallet', args);
             setLoggedIn(true);
             return true;
@@ -35,7 +28,7 @@ export default function ClientWrapper({ children }: { children: React.ReactNode 
 
       <div className={clsx(
         'flex flex-col justify-between',
-        'h-screen max-h-screen w-full'
+        'min-h-screen max-h-screen w-full h-full'
       )}>
 
         <div className={clsx(
@@ -44,7 +37,8 @@ export default function ClientWrapper({ children }: { children: React.ReactNode 
             'pointer-events-none': loggedIn,
           }
         )}>
-          <DynamicWidget />
+          {/* TODO: Make own component */}
+          { loggedIn ? <DynamicWidget /> : <DynamicWidget /> }
         </div>
 
         <main className='flex-grow'>
