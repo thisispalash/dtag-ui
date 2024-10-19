@@ -47,7 +47,7 @@ export default function ClientWrapper({ children }: { children: React.ReactNode 
           <DynamicWidget />
         </div>
 
-        <main>
+        <main className='flex-grow'>
           {children}
         </main>
 

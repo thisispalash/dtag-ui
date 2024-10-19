@@ -49,7 +49,7 @@ export default function RootLayout({
           vt323.variable,
           whiteRabbit.variable,
           'antialiased',
-          'bg-background'
+          'bg-background text-secondary'
         )}
       >
         <RecoilWrapper>

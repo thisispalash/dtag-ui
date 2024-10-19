@@ -13,6 +13,8 @@ const config: Config = {
         background: '#222222',
         primary: '#297F32', // green
         secondary: '#E2E8F0', // white
+        health: '#EF4444', // red-500
+        energy: '#FCD34D', // amber-300
       },
       fontFamily: {
         'heading': 'var(--font-bulzing)',
