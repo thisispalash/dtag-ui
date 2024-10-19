@@ -30,6 +30,8 @@ export default function REPL() {
   }
   
   useEffect(() => {
+    console.log('description changed')
+    console.log(description)
     descriptionRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [description]);
 

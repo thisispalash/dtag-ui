@@ -1,10 +1,11 @@
 import { createContext, useContext, useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
 
 import { Adventure, Room } from '@/types';
+import { gameIdState } from '@/util/recoil';
 
 interface GameContextType {
   description: string;
-  loadGame: (g: object) => void;
   makeMove: (move: string) => Promise<boolean>;
 }
 
@@ -24,6 +25,19 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const [ description, setDescription ] = useState('');
 
   const [ moveHistory, setMoveHistory ] = useState<MoveHistoryType[]>([]);
+
+  const gameId = useRecoilValue(gameIdState);
+
+  const fetchGame = async () => {
+    console.log(gameId)
+    const url = `/api/games?method=getOne&_id=${gameId}`
+    console.log(url)
+    const res = await fetch(url);
+    const g = await res.json();
+    loadGame(g);
+  }
+
+  useEffect(() => { if (gameId) fetchGame(); }, [gameId]);
   
   // This parses the description and highlights any keywords
   const processDescription = (rawDescription: string, room: Room) => {
@@ -57,9 +71,11 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     }
   }, [room]);
 
-  const loadGame = (g: object) => {
+  const loadGame = (g: Adventure) => {
     // This is called when the user has selected a game from the previous screen and purchased it.
     // This expects the game object
+    setGame(g);
+    setDescription('Game loaded. Type in d\\start\\d and hit Enter!');
   }
 
   const displayHelp = () => {
@@ -75,6 +91,19 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 
     if (move === 'help') {
       displayHelp();
+      return true;
+    } else if (move === 'start') {
+      console.log(game)
+      console.log(room)
+      const start = game.rooms.find(( r => r.name.toLowerCase() === game.start_room.toLowerCase() ));
+      if (room.description) {
+        let txt = 'Invalid move. Game already started!\n';
+        txt += room.description;
+        setDescription(txt)
+        return false;
+      } else {
+        setRoom(start || {} as Room);
+      }
       return true;
     }
 
@@ -121,7 +150,6 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     <GameContext.Provider
       value = {{
         description,
-        loadGame,
         makeMove
       }}
     >

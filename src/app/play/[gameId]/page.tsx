@@ -1,27 +1,35 @@
 'use client';
 
-import REPL from '@/components/REPL';
-// import { useWalletClient } from 'wagmi';
+import clsx from 'clsx';
+import { useEffect } from 'react';
+import { useSetRecoilState } from 'recoil';
+import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
 
+import { gameIdState } from '@/util/recoil';
+
+import REPL from '@/components/REPL';
 import Energy from '@/components/widget/Energy';
 import Health from '@/components/widget/Health';
-import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
-import clsx from 'clsx';
+import { GameProvider } from '@/context/GameContext';
 
 export default function Play({ params }: { params: { gameId: string } }) {
 
+  const setGameId = useSetRecoilState(gameIdState);
+  
   const { gameId } = params;
-
+  
   const { primaryWallet: wallet } = useDynamicContext();
 
-
-  console.log(wallet);
 
   const confirmOwnership = async () => {
     // this function confirms that the wallet does indeed own the game
     //  associated by `gameId`
     // If not, toast shown, and redirected to `/play`
+
+    setGameId(gameId);
   }
+
+  useEffect(() => { confirmOwnership(); }, []);
 
   return (
     <div className={clsx(
@@ -29,7 +37,9 @@ export default function Play({ params }: { params: { gameId: string } }) {
       'p-8 h-full'
     )}>
 
-      <REPL />
+      <GameProvider>
+        <REPL />
+      </GameProvider>
 
       <div className={clsx(
         'flex flex-col gap-4'

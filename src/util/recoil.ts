@@ -5,8 +5,8 @@ export const loginState = atom({
   default: false,
 });
 
-export const gameIDState = atom({
-  key: 'gameID',
+export const gameIdState = atom({
+  key: 'gameId',
   default: '',
 });
 

@@ -1,0 +1,87 @@
+{
+  "id": "4032-dec3-98cb-201f-232a",
+  "title": "Local Test",
+  "description": "Play this game locally to test out the UX.",
+  "image_url": "https://ethglobal.b-cdn.net/events/pragma-sanfrancisco/square-logo/default.png",
+  "rooms": [
+    {
+      "name": "Lobby",
+      "description": "You enter a large lobby with booths set up along the walls. There is a lot of energy around you, the vibe of this place itself is different. You look around and you see a few people you recognize, but you don't know them well. You see a few people you don't recognize, but they seem friendly. But all of them were chatting excitedly about this new technology that has just started getting steam. To your left is a door marked 'SOL 03'. Maybe it has something to do with Mars. You look to your right and see an opening to a garden. Finally, further ahead you see some tables with what looks to be packaged snacks. Maybe they have Coke Zero. Want to go forward and see?",
+      "exits": [
+        {
+          "direction": "forward",
+          "room": "Snacks",
+          "is_egg": false
+        },
+        {
+          "direction": "right",
+          "room": "Garden",
+          "is_egg": false
+        },
+        {
+          "direction": "left",
+          "room": "SOL 03",
+          "is_egg": false
+        },
+        {
+          "direction": "back",
+          "room": "Outside",
+          "is_egg": true
+        }
+      ],
+      "entities": [],
+      "items": [],
+      "events": []
+    },
+    {
+      "name": "Snacks",
+      "description": "Disappointing. Who thinks that Diet Coke can replace Coke Zero? These primitives. Better go back to the lobby and go somewhere else.",
+      "exits": [
+        {
+          "direction": "back",
+          "room": "Lobby",
+          "is_egg": false
+        }
+      ],
+      "entities": [],
+      "items": [],
+      "events": []
+    },
+    {
+      "name": "Garden",
+      "description": "It is very breezy outside. Let's take a left and go back inside.",
+      "exits": [
+        {
+          "direction": "left",
+          "room": "Lobby",
+          "is_egg": false
+        }
+      ],
+      "entities": [],
+      "items": [],
+      "events": []
+    },
+    {
+      "name": "SOL 03",
+      "description": "Oh this has nothing to do with Mars. You see no images of space or planets. Instead you see weird cubes on screen and coloured texts on high contract backgrounds. What is this place? Better go right and go back.",
+      "exits": [
+        {
+          "direction": "right",
+          "room": "Lobby",
+          "is_egg": false
+        }
+      ],
+      "entities": [],
+      "items": [],
+      "events": []
+    }
+  ],
+  "items": [],
+  "entities": [],
+  "cost": 0,
+  "currency": "",
+  "start_room": "Lobby",
+  "end_room": "Outside",
+  "random_spawn": false,
+  "random_items": true
+}

@@ -1,0 +1,31 @@
+{
+  "id": "",
+  "title": "",
+  "description": "",
+  "hidden_description": "",
+  "image_url": "",
+  "rooms": [
+    {
+      "name": "",
+      "description": "",
+      "exits": [
+        {
+          "direction": "",
+          "room": "",
+          "is_egg": false
+        }
+      ],
+      "entities": [],
+      "items": [],
+      "events": []
+    }
+  ],
+  "items": [],
+  "entities": [],
+  "cost": 0,
+  "currency": "",
+  "start_room": "",
+  "end_room": "",
+  "random_spawn": false,
+  "random_items": true
+}
