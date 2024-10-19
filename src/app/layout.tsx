@@ -3,7 +3,8 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 
-import DynamicWallet from '@/components/wallet/Dynamic';
+import RecoilWrapper from '@/wrapper/RecoilWrapper';
+import DynamicWrapper from '@/wrapper/DynamicWrapper';
 
 const bulzing = localFont({
   src: './fonts/Bulzing.ttf',
@@ -51,23 +52,11 @@ export default function RootLayout({
           'bg-background'
         )}
       >
-
-        <div className={clsx(
-          'flex flex-col justify-between',
-          'h-screen max-h-screen w-full'
-        )}>
-
-          {/* Wallet */}
-          <div className={clsx(
-            'p-8 items-start w-auto'
-          )}>
-            <DynamicWallet />
-          </div>
-
-          {children}
-
-        </div>
-
+        <RecoilWrapper>
+          <DynamicWrapper>
+            {children}
+          </DynamicWrapper>
+        </RecoilWrapper>
       </body>
     </html>
   );
