@@ -74,6 +74,20 @@
       "entities": [],
       "items": [],
       "events": []
+    },
+    {
+      "name": "Outside",
+      "description": "What are you doing here? You should go back inside. Move forward to go back.",
+      "exits": [
+        {
+          "direction": "forward",
+          "room": "Lobby",
+          "is_egg": false
+        }
+      ],
+      "entities": [],
+      "items": [],
+      "events": []
     }
   ],
   "items": [],

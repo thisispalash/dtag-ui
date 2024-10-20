@@ -7,33 +7,51 @@ import { Highlights } from '@/types';
 interface TypeWriterProps {
   data: string;
   speed?: number;
+  typeOut?: boolean;
 }
 
 // Adapted from https://codesandbox.io/s/react-typewriter-effect-rdis2?file=/components/Typewriter.js
 function TypeWriter({
   data,
-  speed = 83
+  speed = 83,
+  typeOut = true
 }: TypeWriterProps) {
-  
-  const [ text, setText ] = useState('');
-  const [ index, setIndex ] = useState(0);
+
+  const [ text, setText ] = useState(typeOut ? '' : data);
+  const [ index, setIndex ] = useState(typeOut ? 0 : data.length);
+  const [ isComplete, setIsComplete ] = useState(false);
 
   const tick = useCallback(() => {
-    setText(data.slice(0, index + 1));
-    setIndex((prevIndex) => prevIndex + 1);
-  }, [data, index]);
 
-  useEffect(() => {
-    if (index < data.length) {
-      const timer = setTimeout(tick, speed);
-      return () => clearTimeout(timer);
+    console.log('tick ~', text, typeOut);
+
+    if (!typeOut && index < data.length) {
+      setText(data);
+      setIndex(data.length);
+      setIsComplete(true);
+      return;
     }
-  }, [data, index, speed, tick]);
+
+    if (!typeOut || isComplete) return;
+
+    const newText = data.substring(0, index+1);
+    setText(newText);
+    setIndex(index + 1);
+
+  }, [text, data, typeOut, isComplete, speed]);
 
   useEffect(() => {
-    setText('');
-    setIndex(0);
-  }, [data]);
+    if (index >= data.length) setIsComplete(true);
+    else setTimeout(tick, speed);
+  }, [index]);
+
+  // useEffect(() => {
+  //   if (!typeOut && text.length < data.length) {
+  //     setText(data);
+  //     setIndex(data.length);
+  //     setIsComplete(true);
+  //   }
+  // }, [typeOut]);
 
   const renderText = () => {
     const parts = text.split(/([ied]\\.*?\\[ied])/);

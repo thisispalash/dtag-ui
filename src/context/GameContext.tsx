@@ -6,6 +6,8 @@ import { gameIdState } from '@/util/recoil';
 
 interface GameContextType {
   description: string;
+  textHistory: string[];
+  addToHistory: (text: string) => void;
   makeMove: (move: string) => Promise<boolean>;
 }
 
@@ -25,6 +27,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const [ description, setDescription ] = useState('');
 
   const [ moveHistory, setMoveHistory ] = useState<MoveHistoryType[]>([]);
+  const [ textHistory, setTextHistory ] = useState<string[]>([]);
 
   const gameId = useRecoilValue(gameIdState);
 
@@ -34,6 +37,8 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     console.log(url)
     const res = await fetch(url);
     const g = await res.json();
+    setMoveHistory([]);
+    setTextHistory([]);
     loadGame(g);
   }
 
@@ -68,19 +73,27 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     if (room.description) {
       const processedDescription = processDescription(room.description, room);
       setDescription(processedDescription);
+      // addToHistory(processedDescription);
     }
   }, [room]);
+
+  const addToHistory = (text: string) => {
+    setTextHistory(prev => [...prev, text]);
+  }
 
   const loadGame = (g: Adventure) => {
     // This is called when the user has selected a game from the previous screen and purchased it.
     // This expects the game object
     setGame(g);
-    setDescription('Game loaded. Type in d\\start\\d and hit Enter!');
+    const txt = 'Game loaded. Type in d\\start\\d and hit Enter!';
+    setDescription(txt);
+    // addToHistory(txt);
   }
 
   const displayHelp = () => {
     // This displays the help message to the user with basic game commands and mechanics.
     // Not sent to chain.
+    return '';
   }
 
   const makeMove = async (move: string) => {
@@ -89,22 +102,45 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     // Executes the intent with the params
     // Updates the room object
 
+    // addToHistory(`$ ${move}`);
+    setDescription('');
+
+    console.log('makeMove from context ~', move);
+
     if (move === 'help') {
-      displayHelp();
+      const txt = displayHelp();
+      setDescription(txt);
+      // addToHistory(txt);
       return true;
     } else if (move === 'start') {
-      console.log(game)
-      console.log(room)
       const start = game.rooms.find(( r => r.name.toLowerCase() === game.start_room.toLowerCase() ));
       if (room.description) {
         let txt = 'Invalid move. Game already started!\n';
         txt += room.description;
-        setDescription(txt)
+        setDescription(txt);
+        // addToHistory(txt);
         return false;
       } else {
         setRoom(start || {} as Room);
       }
       return true;
+    } else {
+
+      const res = await fetch(`/api/games?method=isValid&room=${JSON.stringify(room)}&move=${move}`);
+      const r = await res.json();
+      console.log('makeMove from context ~', r);
+
+      const result = r.result.split(' ');
+
+      const intent = result[0];
+      const params = result.slice(1).join(' ');
+
+      const f = game.rooms.find((r: Room) => r.name === params);
+      if (f) setRoom(f);
+
+      return true;
+      
+
     }
 
     return false;
@@ -150,6 +186,8 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     <GameContext.Provider
       value = {{
         description,
+        textHistory,
+        addToHistory,
         makeMove
       }}
     >

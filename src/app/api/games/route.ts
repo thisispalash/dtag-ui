@@ -27,6 +27,9 @@ export async function GET(request: NextRequest) {
       const cmd = words[0];
       const tgt = words[1];
 
+      console.log('cmd ~', cmd);
+      console.log('tgt ~', tgt);
+
       if (cmd.toLowerCase() !== 'go') {
         return NextResponse.json({ result: 'Bad method' }), 400;
       } else {
