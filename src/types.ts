@@ -59,6 +59,7 @@ export interface Item {
   type: ItemType;
   image_url: string;
   effect: Effect;
+  cooldown: number; // number of turns before the item can be used again
 }
 
 // entities are AI NPCs in the game, ie, LLMs
