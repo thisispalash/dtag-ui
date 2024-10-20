@@ -42,7 +42,7 @@ export default function Energy() {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {Array.from({ length: Math.ceil(energy) }).map((_, index) => {
+      {Array.from({ length: 5 }).map((_, index) => {
         const fillAmount = Math.min(Math.max(energy - index, 0), 1);
         return <Bolt key={index} fill={fillAmount} isHovered={isHovered} />;
       })}

@@ -43,7 +43,7 @@ export default function Health() {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {Array.from({ length: Math.ceil(lives) }).map((_, index) => {
+      {Array.from({ length: 5 }).map((_, index) => {
         const fillAmount = Math.min(Math.max(lives - index, 0), 1);
         return <Heart key={index} fill={fillAmount} isHovered={isHovered} />;
       })}
