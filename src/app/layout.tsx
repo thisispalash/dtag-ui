@@ -5,6 +5,7 @@ import './globals.css';
 
 import RecoilWrapper from '@/wrapper/RecoilWrapper';
 import DynamicWrapper from '@/wrapper/DynamicWrapper';
+import { Toaster } from '@/components/toast/toaster';
 
 const bulzing = localFont({
   src: './fonts/Bulzing.ttf',
@@ -55,6 +56,7 @@ export default function RootLayout({
         <RecoilWrapper>
           <DynamicWrapper>
             {children}
+            <Toaster />
           </DynamicWrapper>
         </RecoilWrapper>
       </body>

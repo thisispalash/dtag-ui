@@ -1,14 +1,37 @@
 'use client';
 
 import clsx from 'clsx';
+import { useRecoilValue } from 'recoil';
 import { useRouter } from 'next/navigation';
+import { loginState } from '@/util/recoil';
 
 import CTA from '@/components/button/CTA';
-// import DynamicWallet from '@/components/wallet/Dynamic';
+import { useToast } from "@/components/toast/use-toast"
 
 export default function Home() {
 
+  const { toast } = useToast();
+
+  const loggedIn = useRecoilValue(loginState);
+
   const router = useRouter();
+
+  const notLoggedIn = () => {
+    toast({
+      title: "Not logged in!",
+      description: "Please login to perform this action!",
+    });
+  }
+
+  const handleCreate = () => {
+    if (!loggedIn) return notLoggedIn();
+    router.push('/create');
+  }
+
+  const handlePlay = () => {
+    if (!loggedIn) return notLoggedIn();
+    router.push('/play');
+  }
 
   return (
     <div className={clsx(
@@ -41,12 +64,12 @@ export default function Home() {
         <CTA 
           label='Create' 
           variant='secondary'
-          onClick={() => router.push('/create')}
+          onClick={handleCreate}
         />
         <CTA 
           label='Play'
           variant='primary'
-          onClick={() => router.push('/play')}
+          onClick={handlePlay}
         />
       </div>
     </div>
