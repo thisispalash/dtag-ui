@@ -13,7 +13,7 @@ interface TypeWriterProps {
 // Adapted from https://codesandbox.io/s/react-typewriter-effect-rdis2?file=/components/Typewriter.js
 function TypeWriter({
   data,
-  speed = 83,
+  speed = 37,
   typeOut = true
 }: TypeWriterProps) {
 
