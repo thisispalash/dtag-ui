@@ -32,14 +32,14 @@ export default function SelectGame() {
       'grid grid-cols-4 gap-4',
       'overflow-y-auto'
     )}>
-      {games.map((game, index) => (
-        <MarketCard
-          key={index}
-          image_url={game.image_url}
-          title={game.title}
-          onClick={() => handlePlay(game.id)}
-        />
-      ))}
+    {games.map((game, index) => (
+      <MarketCard
+        key={index}
+        image_url={game.image_url}
+        title={game.title}
+        onClick={() => handlePlay(game.id)}
+      />
+    ))}
     </div>
   );
 }

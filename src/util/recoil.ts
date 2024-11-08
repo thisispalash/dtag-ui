@@ -17,5 +17,5 @@ export const livesState = atom({
 
 export const energyState = atom({
   key: 'energy',
-  default: 5.2,
+  default: 4.2,
 });
