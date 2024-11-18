@@ -1,36 +1,9 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## dextra (ui)
 
-## Getting Started
+This is the (incomplete) UI for [dextra](https://ethglobal.com/showcase/dextra-9wnc2), a project built at [ETHGlobal San Francisco 2024](https://ethglobal.com/events/sanfrancisco2024/). This repository is archived and the new frontend code can be found [here](https://github.com/thisispalash/dtag-react). To see details about the project at the hackathon, please see the [hackathon entrypoint](https://github.com/thisispalash/ethglobal-sanfrancisco-2024).
 
-First, run the development server:
+### About
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+`dextra` is the hackathon name of the project dTAG, decentralized Text Adventure Games. The game is inspired from an assignment in a functional programming class. You can find the assignment [here](https://www.cs.cornell.edu/courses/cs3110/2016fa/a2/a2.html). I never actually completed the assignment on time in the class and have wanted to complete the assignment ever since. When I found out about composable NFTs, dTAG became a project! I love trying to insert web3 in everything, and this is somewhere where it actually fits! dTAG is a platform where users can create or play text adventure games; the key difference? Composability! ie, an item created by one user in one adventure can have utility in another adventure by another user! Truly, a game that can exist only because of web3!
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The first attempt at this was in 2022, with [Polygon's BUIDL IT hackathon](https://buidlit.devpost.com/), but [not much accomplished](https://github.com/thisispalash/dTAG) at the time. [ETHGlobal San Francisco 2024](https://ethglobal.com/events/sanfrancisco2024/) then provided a great space to explore and refine the project further. And now, with additional feedback and some more iterations, it is live! Head on over to [the website](https://dtag.thisispalash.com/) to check it out!!
